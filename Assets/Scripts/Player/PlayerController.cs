@@ -16,15 +16,16 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate for Rigidbody movement
     void FixedUpdate()
     {
-        // Move input (old input system)
-        float horizontalInput = Input.GetAxis("Horizontal"); // Right and left
-        float verticalInput = Input.GetAxis("Vertical"); // Background and foreground
-        m_playerMove.Move(new Vector2(horizontalInput, verticalInput));
-
+        // Jump input (old input system)
         bool jumpInput = Input.GetButtonDown("Jump");
         if (jumpInput)
         {
             m_playerJump.Jump();
         }
+
+        // Move input (old input system)
+        float horizontalInput = Input.GetAxis("Horizontal"); // Right and left
+        float verticalInput = Input.GetAxis("Vertical"); // Background and foreground
+        m_playerMove.Move(new Vector2(horizontalInput, verticalInput));
     }
 }

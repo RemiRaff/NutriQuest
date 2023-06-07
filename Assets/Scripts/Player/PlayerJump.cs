@@ -15,6 +15,7 @@ public class PlayerJump : MonoBehaviour, IJump
         {
             Debug.Log("Jumping...");
             m_rigidbody.AddForce(0f, m_jumpForce, 0f);
+            Debug.Log("End jump...");
         }
     }
 
