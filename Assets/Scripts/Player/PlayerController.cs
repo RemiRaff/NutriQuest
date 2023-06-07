@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
 
     // FixedUpdate for Rigidbody movement
-    void FixedUpdate()
+    void Update()
     {
         // Jump input (old input system)
         bool jumpInput = Input.GetButtonDown("Jump");

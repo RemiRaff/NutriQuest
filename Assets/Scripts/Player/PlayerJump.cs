@@ -11,10 +11,11 @@ public class PlayerJump : MonoBehaviour, IJump
     // Start is called before the first frame update
     public void Jump()
     {
+        Debug.Log("test");
         if (IsGrounded())
         {
             Debug.Log("Jumping...");
-            m_rigidbody.AddForce(0f, m_jumpForce, 0f);
+            m_rigidbody.AddForce(0f, m_jumpForce, 0f, ForceMode.Impulse);
             Debug.Log("End jump...");
         }
     }
