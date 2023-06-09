@@ -25,7 +25,7 @@ public class PlayerOnGround : MonoBehaviour, IGrounded
         bool hit = Physics.Raycast(ray, m_maxDistance, m_groundLayerMask);
 
         return hit;
-        /* BoxCast, OverlapBox
+        /* BoxCast, OverlapBox, CheckSpere
         if (Physics.OverlapBox(transform.position, m_boxSize, transform.rotation, m_groundLayerMask)) // -transform.up, 
             m_grounded = true;
         else
