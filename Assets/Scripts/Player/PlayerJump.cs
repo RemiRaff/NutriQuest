@@ -1,32 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TNRD;
 
 public class PlayerJump : MonoBehaviour, IJump
 {
     [SerializeField] private Rigidbody m_rigidbody;
-    [SerializeField] private float m_jumpForce = 20f;
+    [SerializeField] private SerializableInterface<IGrounded> m_playerGroundedInterface;
+    [SerializeField] private float m_jumpForce = 350f; // TODO: à mettre dans un scriptable object pour le player ???
+    [SerializeField] private float m_jumpDelta = 10; // TODO: à mettre dans un scriptable object pour le player ???
+    [SerializeField] private float m_jumpNiv = 0; // TODO: à mettre dans un scriptable object pour le player ???
 
-    private bool m_inair = false;
+    private IGrounded m_playerGrounded => m_playerGroundedInterface.Value;
+
     // Start is called before the first frame update
     public void Jump()
     {
-        Debug.Log("test");
-        if (IsGrounded())
+        if (m_playerGrounded.IsGrounded())
         {
-            Debug.Log("Jumping...");
-            m_rigidbody.AddForce(0f, m_jumpForce, 0f, ForceMode.Impulse);
-            Debug.Log("End jump...");
+            m_rigidbody.AddForce(transform.up * JumpForce(), ForceMode.Impulse);
         }
     }
 
-    public bool IsJumping()
+    // Calculate the jump force
+    private float JumpForce()
     {
-        return m_inair;
-    }
-
-    public bool IsGrounded()
-    {
-        return !m_inair;
+        return m_jumpForce + m_jumpDelta * m_jumpNiv;
     }
 }

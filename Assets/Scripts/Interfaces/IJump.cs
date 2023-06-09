@@ -1,7 +1,5 @@
 public interface IJump
 {
-    // Start is called before the first frame update
+    // Jump method
     void Jump();
-    bool IsJumping();
-    bool IsGrounded();
 }

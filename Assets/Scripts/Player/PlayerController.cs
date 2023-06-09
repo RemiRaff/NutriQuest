@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TNRD;
 
@@ -12,20 +10,27 @@ public class PlayerController : MonoBehaviour
     private IMove m_playerMove => m_playerMoveInterface.Value;
     private IJump m_playerJump => m_playerJumpInterface.Value;
 
+    // Move variables
+    private float horizontalInput;
+    private float verticalInput;
 
-    // FixedUpdate for Rigidbody movement
+    // Input in Update    
     void Update()
     {
         // Jump input (old input system)
-        bool jumpInput = Input.GetButtonDown("Jump");
-        if (jumpInput)
+        if (Input.GetButtonDown("Jump"))
         {
             m_playerJump.Jump();
         }
 
         // Move input (old input system)
-        float horizontalInput = Input.GetAxis("Horizontal"); // Right and left
-        float verticalInput = Input.GetAxis("Vertical"); // Background and foreground
-        m_playerMove.Move(new Vector2(horizontalInput, verticalInput));
+        horizontalInput = Input.GetAxis("Horizontal"); // Right and left
+        verticalInput = Input.GetAxis("Vertical"); // Background and foreground
+    }
+
+    // FixedUpdate for Rigidbody movement
+    void FixedUpdate()
+    {
+         m_playerMove.Move(new Vector2(horizontalInput, verticalInput));
     }
 }
