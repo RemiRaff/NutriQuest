@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotateMe : MonoBehaviour
 {
     [SerializeField]
-    int rotationSpeed = 2;
+    float rotationSpeed = 2f;
 
     // Update is called once per frame
     void Update()
